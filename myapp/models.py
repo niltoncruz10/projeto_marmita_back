@@ -13,6 +13,9 @@ class Cliente(models.Model):
     data_pagamento = models.DateField()
     descricao = models.TextField()
     entrega = models.BooleanField(default=False)
-    saldo = models.DecimalField(max_digits=8, decimal_places=2)
+    saldo = models.DecimalField(max_digits=6, decimal_places=2)
+
+    def__str__(self):
+    return self.nome
 
 
