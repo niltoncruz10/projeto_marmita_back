@@ -1,6 +1,7 @@
 #from rest_framework import generics
-from .models import Cliente, Estabelecimento, Entrega, Cardapio, Rota
-from .serializers import ClienteSerializer, EstabelecimentoSerializer, EntregaSerializer, CardapioSerializer, RotaSerializer
+from .models import Cliente, Estabelecimento, Entrega, Cardapio, Rota, Telefone, Pedido
+from .serializers import ClienteSerializer, EstabelecimentoSerializer, EntregaSerializer, CardapioSerializer,\
+    RotaSerializer, TelefoneSerializer, PedidoSerializer
 from rest_framework import viewsets
 
 #class ClienteList(generics.ListCreateAPIView):
@@ -33,5 +34,15 @@ class CardapioView(viewsets.ModelViewSet):
 class RotaView(viewsets.ModelViewSet):
         queryset = Rota.objects.all()
         serializer_class = RotaSerializer
+
+
+class TelefoneView(viewsets.ModelViewSet):
+            queryset = Telefone.objects.all()
+            serializer_class = TelefoneSerializer
+
+
+class PedidoView(viewsets.ModelViewSet):
+    queryset = Pedido.objects.all()
+    serializer_class = PedidoSerializer
 
 

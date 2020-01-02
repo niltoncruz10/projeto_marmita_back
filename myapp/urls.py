@@ -9,6 +9,9 @@ router.register('estabelecimento', views.EstabelecimentoView)
 router.register('entrega', views.EntregaView)
 router.register('cardapio', views.CardapioView)
 router.register('rota', views.RotaView)
+router.register('telefone', views.TelefoneView)
+router.register('pedido', views.PedidoView)
+
 
 urlpatterns = [
 

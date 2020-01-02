@@ -7,9 +7,10 @@ class Cliente(models.Model):
 
     nome = models.CharField(max_length=45)
     data_pagamento = models.DateField()
-    descricao = models.TextField()
+    descricao = models.CharField(max_length=45, blank=True)
     entrega = models.BooleanField(default=False)
-    saldo = models.DecimalField(max_digits=6, decimal_places=2)
+    saldo = models.DecimalField(max_digits=4, decimal_places=2)
+
 
     def __str__(self):
         return self.nome
@@ -48,7 +49,25 @@ class Rota(models.Model):
 
     identificador = models.CharField(max_length=8)
     descricao = models.CharField(max_length=45)
-    entrega = models.ForeignKey('Entrega', related_name='entrega')
 
     def __str__(self):
         return self.identificador
+
+
+class Telefone(models.Model):
+
+    ddd = models.CharField(max_length=3)
+    numero = models.CharField(max_length=10)
+    cliente = models.OneToOneField(Cliente, on_delete=models.SET_NULL, null=True)
+
+    def __str__(self):
+        return self.numero
+
+
+class Pedido(models.Model):
+
+    status = models.BooleanField(default=False)
+    valor_total = models.DecimalField(max_digits=6, decimal_places=2)
+
+    def __str__(self):
+        return self.status
