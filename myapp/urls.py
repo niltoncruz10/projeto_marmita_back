@@ -11,6 +11,12 @@ router.register('cardapio', views.CardapioView)
 router.register('rota', views.RotaView)
 router.register('telefone', views.TelefoneView)
 router.register('pedido', views.PedidoView)
+router.register('conta_receber', views.Conta_receberView)
+router.register('dias_pedido', views.Dias_pedidoView)
+router.register('produto', views.ProdutoView)
+router.register('item', views.ItemView)
+router.register('preco_produto', views.Preco_produtoView)
+
 
 
 urlpatterns = [

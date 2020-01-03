@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from .models import Cliente, Estabelecimento, Entrega, Cardapio, Rota, Telefone, Pedido
+from .models import Cliente, Estabelecimento, Entrega, Cardapio, Rota, Telefone, Pedido, Conta_receber, Dias_pedido, \
+    Produto, Item, Preco_produto
 
 class ClienteSerializer(serializers.ModelSerializer):
 
@@ -42,12 +43,56 @@ class RotaSerializer(serializers.ModelSerializer):
 
 
 class TelefoneSerializer(serializers.ModelSerializer):
+
     class Meta:
+
         model = Telefone
         fields = ('id', 'ddd', 'numero')
 
 
 class PedidoSerializer(serializers.ModelSerializer):
+
     class Meta:
+
         model = Pedido
         fields = ('id', 'status', 'valor')
+
+
+class Conta_receberSerializer(serializers.ModelSerializer):
+
+    class Meta:
+
+        model = Conta_receber
+        fields = ('id', 'valor', 'valor_pago', 'status')
+
+
+class Dias_pedidoSerializer(serializers.ModelSerializer):
+
+    class Meta:
+
+        model = Dias_pedido
+        fields = ('id', 'segunda', 'terca', 'quarta', 'quinta', 'sexta', 'sabado', 'domingo')
+
+
+class ProdutoSerializer(serializers.ModelSerializer):
+
+    class Meta:
+
+        model = Produto
+        fields = ('id', 'nome', 'descricao')
+
+
+class ItemSerializer(serializers.ModelSerializer):
+
+    class Meta:
+
+        model = Item
+        fields = ('id', 'nome', 'descricao', "entrega")
+
+
+class Preco_produtoSerializer(serializers.ModelSerializer):
+
+    class Meta:
+
+        model = Preco_produto
+        fields = ('id', 'valor')
