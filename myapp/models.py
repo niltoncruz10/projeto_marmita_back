@@ -5,12 +5,23 @@ from django.db import models
 
 class Cliente(models.Model):
 
-    estabelecimento = models.ForeignKey("Estabelecimento", on_delete=models.CASCADE, related_name='cliente')
     nome = models.CharField(max_length=45)
     data_pagamento = models.DateField()
     descricao = models.CharField(max_length=45, blank=True)
     entrega = models.BooleanField(default=False)
     saldo = models.DecimalField(max_digits=4, decimal_places=2)
+
+    def __str__(self):
+        return self.nome
+
+
+class Usuario(models.Model):
+
+    nome = models.CharField(max_length=100)
+    email = models.CharField(max_length=100)
+    username = models.CharField(max_length=40)
+    password = models.CharField(max_length=50)
+    status = models.BooleanField(default=False)
 
     def __str__(self):
         return self.nome
@@ -32,7 +43,8 @@ class Estabelecimento(models.Model):
 
 class Entrega(models.Model):
 
-    taxa_entrega = models.DecimalField(max_digits=4, decimal_places=2)
+    #rota = models.ForeignKey("Rota", on_delete=models.CASCADE, related_name='entrega')
+    taxa_entrega = models.FloatField()
 
     def __str__(self):
         return self.taxa_entrega
@@ -57,6 +69,7 @@ class Rota(models.Model):
 
 class Telefone(models.Model):
 
+    cliente = models.ForeignKey("Cliente", on_delete=models.CASCADE, related_name='telefone')
     ddd = models.CharField(max_length=3)
     numero = models.CharField(max_length=10)
     cliente = models.OneToOneField(Cliente, on_delete=models.SET_NULL, null=True)
@@ -102,7 +115,6 @@ class Produto(models.Model):
 
     nome = models.CharField(max_length=30)
     descricao = models.CharField(max_length=40)
-    #preco_produto = models.OneToOneField(Preco_produto, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return self.nome
@@ -111,8 +123,6 @@ class Produto(models.Model):
 class Item(models.Model):
 
     nome = models.CharField(max_length=30)
-    descricao = models.CharField(max_length=40)
-    entrega = models.BooleanField(default=False)
 
     def __str__(self):
         return self.nome
@@ -126,3 +136,30 @@ class Preco_produto(models.Model):
 
     def __str__(self):
         return self.valor
+
+
+class Perfil(models.Model):
+
+    nome = models.CharField(max_length=30)
+    descricao = models.CharField(max_length=45)
+
+    def __str__(self):
+        return self.nome
+
+
+class Menu(models.Model):
+
+    titulo = models.CharField(max_length=255)
+    icone = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.titulo
+
+
+class Funcionalidade(models.Model):
+
+    titulo = models.CharField(max_length=255)
+    link = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.titulo

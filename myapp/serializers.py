@@ -1,6 +1,6 @@
 from rest_framework import serializers
-from .models import Cliente, Estabelecimento, Entrega, Cardapio, Rota, Telefone, Pedido, Conta_receber, Dias_pedido, \
-    Produto, Item, Preco_produto
+from .models import Cliente, Usuario, Estabelecimento, Entrega, Cardapio, Rota, Telefone, Pedido, Conta_receber, Dias_pedido, \
+    Produto, Item, Preco_produto, Perfil, Menu, Funcionalidade
 
 class ClienteSerializer(serializers.ModelSerializer):
 
@@ -8,6 +8,12 @@ class ClienteSerializer(serializers.ModelSerializer):
 
         model = Cliente
         fields = ('id', 'nome', 'data_pagamento', 'descricao', 'entrega', 'saldo')
+
+
+class UsuarioSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Usuario
+        fields = ('id', 'nome', 'status')
 
 
 class EstabelecimentoSerializer(serializers.ModelSerializer):
@@ -87,7 +93,7 @@ class ItemSerializer(serializers.ModelSerializer):
     class Meta:
 
         model = Item
-        fields = ('id', 'nome', 'descricao', "entrega")
+        fields = ('id', 'nome')
 
 
 class Preco_produtoSerializer(serializers.ModelSerializer):
@@ -96,3 +102,25 @@ class Preco_produtoSerializer(serializers.ModelSerializer):
 
         model = Preco_produto
         fields = ('id', 'valor')
+
+
+class PerfilSerializer(serializers.ModelSerializer):
+
+    class Meta:
+
+        model = Perfil
+        fields = ('id', 'nome', 'descricao')
+
+
+class MenuSerializer(serializers.ModelSerializer):
+    class Meta:
+
+        model = Menu
+        fields = ('id', 'titulo', 'icone')
+
+
+class FuncionalidadeSerializer(serializers.ModelSerializer):
+    class Meta:
+
+        model = Funcionalidade
+        fields = ('id', 'titulo', 'link')
