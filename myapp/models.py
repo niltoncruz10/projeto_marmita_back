@@ -69,12 +69,13 @@ class Rota(models.Model):
 
 class Telefone(models.Model):
 
-    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name='telefone')
     ddd = models.CharField(max_length=3)
     numero = models.CharField(max_length=10)
+    # cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
+    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name='telefone')
 
     def __str__(self):
-        return self.numero
+        return '(' + self.ddd + ')' + self.numero
 
 
 class Pedido(models.Model):
@@ -94,7 +95,7 @@ class Conta_receber(models.Model):
     status = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.valor_pago
+        return "{0}: R${1}".format(self.cliente.nome, self.valor_pago)
 
 
 class Dias_pedido(models.Model):

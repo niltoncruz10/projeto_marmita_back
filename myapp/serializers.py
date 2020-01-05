@@ -53,7 +53,7 @@ class TelefoneSerializer(serializers.ModelSerializer):
     class Meta:
 
         model = Telefone
-        fields = ('id', 'ddd', 'numero')
+        fields = ('id', 'ddd', 'numero', 'cliente')
 
 
 class PedidoSerializer(serializers.ModelSerializer):
