@@ -6,7 +6,7 @@ from django.db import models
 class Cliente(models.Model):
 
     nome = models.CharField(max_length=45)
-    data_pagamento = models.DateField()
+    data_pagamento = models.IntegerField()
     descricao = models.CharField(max_length=45, blank=True)
     entrega = models.BooleanField(default=False)
     saldo = models.DecimalField(max_digits=4, decimal_places=2)
@@ -69,10 +69,9 @@ class Rota(models.Model):
 
 class Telefone(models.Model):
 
-    cliente = models.ForeignKey("Cliente", on_delete=models.CASCADE, related_name='telefone')
+    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name='telefone')
     ddd = models.CharField(max_length=3)
     numero = models.CharField(max_length=10)
-    cliente = models.OneToOneField(Cliente, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return self.numero
@@ -89,6 +88,7 @@ class Pedido(models.Model):
 
 class Conta_receber(models.Model):
 
+    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name='conta_receber')
     valor = models.DecimalField(max_digits=6, decimal_places=2)
     valor_pago = models.DecimalField(max_digits=6, decimal_places=2)
     status = models.BooleanField(default=False)
