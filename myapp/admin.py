@@ -20,3 +20,4 @@ admin.site.register(Preco_produto)
 admin.site.register(Perfil)
 admin.site.register(Menu)
 admin.site.register(Funcionalidade)
+

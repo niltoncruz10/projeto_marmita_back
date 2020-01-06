@@ -99,8 +99,6 @@ class MenuView(viewsets.ModelViewSet):
     queryset = Menu.objects.all()
     serializer_class = MenuSerializer
 
-
 class FuncionalidadeView(viewsets.ModelViewSet):
-
     queryset = Funcionalidade.objects.all()
     serializer_class = FuncionalidadeSerializer

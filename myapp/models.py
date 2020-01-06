@@ -1,15 +1,16 @@
 from django.db import models
 
-# Create your models here.
-
-
 class Cliente(models.Model):
+
 
     nome = models.CharField(max_length=45)
     data_pagamento = models.IntegerField()
     descricao = models.CharField(max_length=45, blank=True)
     entrega = models.BooleanField(default=False)
     saldo = models.DecimalField(max_digits=4, decimal_places=2)
+    rota = models.ManyToManyField('Rota')
+    estabelecimento = models.ManyToManyField('Estabelecimento')
+
 
     def __str__(self):
         return self.nome
@@ -29,7 +30,6 @@ class Usuario(models.Model):
 
 class Estabelecimento(models.Model):
 
-
     nome = models.CharField(max_length=45)
     razao_social = models.CharField(max_length=45)
     cpf_cnpj = models.CharField(max_length=18)
@@ -37,13 +37,13 @@ class Estabelecimento(models.Model):
     telefone = models.CharField(max_length=45)
     responsavel = models.CharField(max_length=45)
 
+
     def __str__(self):
         return self.nome
 
 
 class Entrega(models.Model):
 
-    #rota = models.ForeignKey("Rota", on_delete=models.CASCADE, related_name='entrega')
     taxa_entrega = models.FloatField()
 
     def __str__(self):
@@ -62,6 +62,7 @@ class Rota(models.Model):
 
     identificador = models.CharField(max_length=8)
     descricao = models.CharField(max_length=45)
+    #entrega = models.ForeignKey(Entrega, on_delete=models.CASCADE, related_name='rota')
 
     def __str__(self):
         return self.identificador
@@ -71,8 +72,7 @@ class Telefone(models.Model):
 
     ddd = models.CharField(max_length=3)
     numero = models.CharField(max_length=10)
-    # cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
-    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name='telefone')
+    cliente = models.ForeignKey('Cliente', on_delete=models.CASCADE, related_name='telefone')
 
     def __str__(self):
         return '(' + self.ddd + ')' + self.numero
@@ -82,6 +82,7 @@ class Pedido(models.Model):
 
     status = models.BooleanField(default=False)
     valor_total = models.DecimalField(max_digits=6, decimal_places=2)
+    produto = models.ManyToManyField('Produto')
 
     def __str__(self):
         return self.status
@@ -93,6 +94,7 @@ class Conta_receber(models.Model):
     valor = models.DecimalField(max_digits=6, decimal_places=2)
     valor_pago = models.DecimalField(max_digits=6, decimal_places=2)
     status = models.BooleanField(default=False)
+
 
     def __str__(self):
         return "{0}: R${1}".format(self.cliente.nome, self.valor_pago)
@@ -116,6 +118,7 @@ class Produto(models.Model):
 
     nome = models.CharField(max_length=30)
     descricao = models.CharField(max_length=40)
+    item = models.ManyToManyField('Item')
 
     def __str__(self):
         return self.nome
@@ -132,8 +135,7 @@ class Item(models.Model):
 class Preco_produto(models.Model):
 
     valor = models.DecimalField(max_digits=6, decimal_places=2)
-    #produto = models.OneToOneField(Produto, on_delete=models.SET_NULL, null=True)
-
+    #produto = models.ForeignKey(Produto, on_delete=models.CASCADE, related_name='preco_produto')
 
     def __str__(self):
         return self.valor
@@ -143,6 +145,7 @@ class Perfil(models.Model):
 
     nome = models.CharField(max_length=30)
     descricao = models.CharField(max_length=45)
+    funcionalidade = models.ManyToManyField('Funcionalidade')
 
     def __str__(self):
         return self.nome
@@ -164,3 +167,5 @@ class Funcionalidade(models.Model):
 
     def __str__(self):
         return self.titulo
+
+

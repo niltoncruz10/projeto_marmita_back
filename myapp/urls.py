@@ -23,6 +23,7 @@ router.register('funcionalidade', views.FuncionalidadeView)
 
 
 
+
 urlpatterns = [
 
     #url('', views.ClienteList.as_view(), name='cliente-list'),

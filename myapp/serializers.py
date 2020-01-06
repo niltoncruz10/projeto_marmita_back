@@ -113,6 +113,7 @@ class PerfilSerializer(serializers.ModelSerializer):
 
 
 class MenuSerializer(serializers.ModelSerializer):
+
     class Meta:
 
         model = Menu
@@ -120,6 +121,7 @@ class MenuSerializer(serializers.ModelSerializer):
 
 
 class FuncionalidadeSerializer(serializers.ModelSerializer):
+
     class Meta:
 
         model = Funcionalidade
