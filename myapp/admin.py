@@ -4,11 +4,23 @@ from .models import Cliente, Usuario, Cardapio, Entrega, Estabelecimento, Rota, 
 
 # Register your models here.
 
-admin.site.register(Cliente)
-admin.site.register(Usuario)
+class ClienteAdmin(admin.ModelAdmin):
+    list_display = ('nome', 'data_pagamento', 'entrega', 'saldo', 'descricao')
+    list_filter = ('nome', 'data_pagamento',)
+
+class EstabelecimentoAdmin(admin.ModelAdmin):
+    list_display = ('nome', 'razao_social', 'cpf_cnpj', 'email', 'telefone', 'responsavel')
+
+
+class UsuarioAdmin(admin.ModelAdmin):
+    list_display = ('nome', 'email', 'status')
+
+
+admin.site.register(Cliente, ClienteAdmin)
+admin.site.register(Usuario, UsuarioAdmin)
 admin.site.register(Cardapio)
 admin.site.register(Entrega)
-admin.site.register(Estabelecimento)
+admin.site.register(Estabelecimento, EstabelecimentoAdmin)
 admin.site.register(Rota)
 admin.site.register(Telefone)
 admin.site.register(Pedido)

@@ -5,7 +5,7 @@ from rest_framework import routers
 
 router = routers.DefaultRouter()
 router.register('clientes', views.ClienteView)
-router.register('usuario', views.UsuarioView)
+router.register('usuarios', views.UsuarioView)
 router.register('estabelecimento', views.EstabelecimentoView)
 router.register('entrega', views.EntregaView)
 router.register('cardapio', views.CardapioView)
@@ -20,8 +20,6 @@ router.register('preco_produto', views.Preco_produtoView)
 router.register('perfil', views.PerfilView)
 router.register('menu', views.MenuView)
 router.register('funcionalidade', views.FuncionalidadeView)
-
-
 
 
 urlpatterns = [
