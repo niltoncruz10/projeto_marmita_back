@@ -9,7 +9,8 @@ router.register('usuarios', views.UsuarioView)
 router.register('estabelecimento', views.EstabelecimentoView)
 router.register('entrega', views.EntregaView)
 router.register('cardapio', views.CardapioView)
-router.register('rota', views.RotaView)
+router.register('rota', views.RotaViewQQQ
+router.register('rota', views.RotaViewQQQ
 router.register('telefones', views.TelefoneView)
 router.register('pedido', views.PedidoView)
 router.register('conta_receber', views.Conta_receberView)
