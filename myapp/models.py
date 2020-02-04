@@ -39,10 +39,10 @@ class Usuario(models.Model):
 
 
 class Entrega(models.Model):
-    taxa_entrega = models.FloatField()
+    valor = models.DecimalField(max_digits=6, decimal_places=2)
 
     def __str__(self):
-        return self.taxa_entrega
+        return "{0}".format(self.valor)
 
 
 class Cardapio(models.Model):
