@@ -1,7 +1,13 @@
 .idea/**
 myapp/migrations/__pycache__/**
 myapp/__pycache__/**
+<<<<<<< HEAD
 *.sqlite3
 *.whl
 myproject/_pycache_
 venv
+=======
+myproject/__pycache__
+*.whl
+venv
+>>>>>>> 0d57ab71dbb2f886ef8daec6b036b0c19780d3e0

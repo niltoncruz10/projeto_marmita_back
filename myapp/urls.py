@@ -10,7 +10,10 @@ router.register('estabelecimento', views.EstabelecimentoView)
 router.register('entrega', views.EntregaView)
 router.register('cardapio', views.CardapioView)
 router.register('rota', views.RotaView)
+<<<<<<< HEAD
 router.register('rota', views.RotaView)
+=======
+>>>>>>> 0d57ab71dbb2f886ef8daec6b036b0c19780d3e0
 router.register('telefones', views.TelefoneView)
 router.register('pedido', views.PedidoView)
 router.register('conta_receber', views.Conta_receberView)
