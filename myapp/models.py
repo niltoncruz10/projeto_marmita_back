@@ -42,7 +42,7 @@ class Entrega(models.Model):
     taxa_entrega = models.FloatField()
 
     def __str__(self):
-        return self.taxa_entrega
+        return self.taxa_entregaqqd
 
 
 class Cardapio(models.Model):
