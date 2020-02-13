@@ -4,5 +4,5 @@ myapp/__pycache__/**
 *.whl
 venv
 myproject/__pycache__
-*pyc
+*.pyc
 
