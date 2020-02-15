@@ -5,3 +5,4 @@ myproject/_pycache_
 venv
 *.sqlite3
 *.whl
+.vscode
