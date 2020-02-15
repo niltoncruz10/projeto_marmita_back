@@ -73,6 +73,8 @@ class Pedido(models.Model):
     status = models.BooleanField(default=False)
     valor = models.DecimalField(max_digits=6, decimal_places=2)
     produto = models.ManyToManyField('Produto')
+    cliente = models.ForeignKey('Cliente', on_delete=models.CASCADE)
+
 
     def __str__(self):
         return self.status
