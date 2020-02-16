@@ -20,7 +20,7 @@ class Estabelecimento(models.Model):
     email = models.CharField(max_length=45)
     telefone = models.CharField(max_length=45)
     responsavel = models.CharField(max_length=45)
-
+    #cliente = models.ForeignKey('Cliente', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.nome
@@ -32,7 +32,6 @@ class Usuario(models.Model):
     username = models.CharField(max_length=40)
     password = models.CharField(max_length=50)
     status = models.BooleanField(default=False)
-    #estabelecimento = models.ForeignKey(Estabelecimento, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.nome
@@ -55,6 +54,7 @@ class Cardapio(models.Model):
 class Rota(models.Model):
     identificador = models.CharField(max_length=8)
     descricao = models.CharField(max_length=45)
+    #entrega = models.ForeignKey(Entrega, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.identificador
@@ -73,8 +73,7 @@ class Pedido(models.Model):
     status = models.BooleanField(default=False)
     valor = models.DecimalField(max_digits=6, decimal_places=2)
     produto = models.ManyToManyField('Produto')
-    cliente = models.ForeignKey('Cliente', on_delete=models.CASCADE)
-
+    #rota = models.ForeignKey(Rota, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.status
