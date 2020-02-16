@@ -7,7 +7,6 @@ class Cliente(models.Model):
     entrega = models.BooleanField(default=False)
     saldo = models.DecimalField(max_digits=4, decimal_places=2)
     rota = models.ManyToManyField('Rota')
-    estabelecimento = models.ManyToManyField('Estabelecimento')
 
     def __str__(self):
         return self.nome
@@ -20,7 +19,7 @@ class Estabelecimento(models.Model):
     email = models.CharField(max_length=45)
     telefone = models.CharField(max_length=45)
     responsavel = models.CharField(max_length=45)
-    #cliente = models.ForeignKey('Cliente', on_delete=models.CASCADE)
+    cliente = models.ManyToManyField('Cliente')
 
     def __str__(self):
         return self.nome
@@ -73,7 +72,7 @@ class Pedido(models.Model):
     status = models.BooleanField(default=False)
     valor = models.DecimalField(max_digits=6, decimal_places=2)
     produto = models.ManyToManyField('Produto')
-    #rota = models.ForeignKey(Rota, on_delete=models.CASCADE)
+    #estabelecimento = models.ForeignKey(Estabelecimento, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.status
