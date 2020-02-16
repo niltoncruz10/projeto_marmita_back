@@ -6,3 +6,4 @@ venv
 *.sqlite3
 *.whl
 .vscode
+db.sqlite3
